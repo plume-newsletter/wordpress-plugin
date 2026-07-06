@@ -21,9 +21,12 @@ define( 'PLUME_NEWSLETTER_FILE', __FILE__ );
 define( 'PLUME_NEWSLETTER_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PLUME_NEWSLETTER_URL', plugin_dir_url( __FILE__ ) );
 
+require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-client.php';
+require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-form.php';
+
+add_shortcode( 'plume_signup', array( 'Plume_Form', 'shortcode' ) );
+
 // Includes are wired in later tasks:
-//   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-client.php';   (Task 2)
-//   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-form.php';     (Task 3)
 //   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-handler.php';  (Task 4)
 //   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-settings.php'; (Task 5)
 //   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-widget.php';   (Task 5)

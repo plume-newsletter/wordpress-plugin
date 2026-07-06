@@ -57,4 +57,20 @@ if ( ! function_exists( 'shortcode_atts' ) ) {
 	}
 }
 
+if ( ! function_exists( 'admin_url' ) ) {
+	function admin_url( $path = '' ) { return 'https://wp.test/wp-admin/' . ltrim( $path, '/' ); }
+}
+if ( ! function_exists( 'wp_nonce_field' ) ) {
+	function wp_nonce_field( $action = -1, $name = '_wpnonce', $referer = true, $echo = true ) {
+		$f = '<input type="hidden" name="' . esc_attr( $name ) . '" value="nonce-' . esc_attr( $action ) . '" />';
+		if ( $echo ) { echo $f; }
+		return $f;
+	}
+}
+if ( ! function_exists( 'esc_attr__' ) ) { function esc_attr__( $t, $d = null ) { return $t; } }
+if ( ! function_exists( 'get_option' ) ) {
+	function get_option( $k, $default = false ) { return isset( $GLOBALS['__plume_options'][ $k ] ) ? $GLOBALS['__plume_options'][ $k ] : $default; }
+}
+
 require_once __DIR__ . '/../includes/class-plume-client.php';
+require_once __DIR__ . '/../includes/class-plume-form.php';
