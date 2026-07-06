@@ -34,6 +34,9 @@ No. It uses Plume's public double-opt-in subscribe endpoint, so no key is stored
 = Where do I find my list ID? =
 In your Plume dashboard under Lists.
 
+= I use full-page caching. Anything to know? =
+Yes. Exclude the page holding the form from full-page caching. The form carries a one-time security token and a timing check that are both baked into cached HTML — under aggressive caching a legitimate submission can be silently treated as "check your email" without creating a subscriber, and the timing-based spam check is weakened (the honeypot still applies). Most caching plugins let you exclude a single page or URL.
+
 == Privacy ==
 
 The email address and optional name a visitor submits are sent to the Plume instance you configure. The plugin stores nothing locally beyond the base URL and list ID settings.
