@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) && PHP_SAPI !== 'cli' ) { exit; }
+defined( 'ABSPATH' ) || exit;
 
 class Plume_Handler {
 
@@ -30,16 +30,23 @@ class Plume_Handler {
 			$name  = sanitize_text_field( isset( $post['plume_name'] ) ? $post['plume_name'] : '' );
 			$list  = sanitize_text_field( isset( $post['plume_list'] ) ? $post['plume_list'] : '' );
 			$base  = get_option( 'plume_newsletter_base_url', '' );
-			if ( '' === $list ) { $list = get_option( 'plume_newsletter_list_id', '' ); }
+			if ( '' === $list ) {
+				$list = get_option( 'plume_newsletter_list_id', '' ); }
 
 			if ( ! is_email( $email ) || '' === $base || '' === $list ) {
-				$result = array( 'ok' => false, 'message' => __( 'Please enter a valid email address.', 'plume-newsletter' ) );
+				$result = array(
+					'ok'      => false,
+					'message' => __( 'Please enter a valid email address.', 'plume-newsletter' ),
+				);
 			} else {
 				$result = Plume_Client::subscribe( $base, $list, $email, $name );
 			}
 		} else {
 			// Bots and bad nonces get a generic "success" — no info leak, no subscriber created.
-			$result = array( 'ok' => true, 'message' => __( 'Thanks! Check your email to confirm your subscription.', 'plume-newsletter' ) );
+			$result = array(
+				'ok'      => true,
+				'message' => __( 'Thanks! Check your email to confirm your subscription.', 'plume-newsletter' ),
+			);
 		}
 
 		self::respond( $result, wp_get_referer() );

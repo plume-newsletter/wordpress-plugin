@@ -3,6 +3,10 @@
 // without a WordPress install. Tests that need to vary wp_remote_post set
 // $GLOBALS['__plume_remote_post'] to a callable.
 
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', __DIR__ . '/' );
+}
+
 class WP_Error_Stub {
 	public $msg;
 	public function __construct( $m = 'error' ) { $this->msg = $m; }

@@ -1,10 +1,24 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+defined( 'ABSPATH' ) || exit;
 
 class Plume_Settings {
 	public static function register() {
-		register_setting( 'plume_newsletter', 'plume_newsletter_base_url', array( 'sanitize_callback' => 'esc_url_raw', 'default' => '' ) );
-		register_setting( 'plume_newsletter', 'plume_newsletter_list_id', array( 'sanitize_callback' => 'sanitize_text_field', 'default' => '' ) );
+		register_setting(
+			'plume_newsletter',
+			'plume_newsletter_base_url',
+			array(
+				'sanitize_callback' => 'esc_url_raw',
+				'default'           => '',
+			)
+		);
+		register_setting(
+			'plume_newsletter',
+			'plume_newsletter_list_id',
+			array(
+				'sanitize_callback' => 'sanitize_text_field',
+				'default'           => '',
+			)
+		);
 
 		add_settings_section( 'plume_main', '', '__return_false', 'plume_newsletter' );
 		add_settings_field( 'plume_base', __( 'Plume base URL', 'plume-newsletter' ), array( __CLASS__, 'field_base' ), 'plume_newsletter', 'plume_main' );
@@ -31,7 +45,8 @@ class Plume_Settings {
 	}
 
 	public static function page() {
-		if ( ! current_user_can( 'manage_options' ) ) { return; }
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return; }
 		echo '<div class="wrap"><h1>' . esc_html__( 'Plume Newsletter', 'plume-newsletter' ) . '</h1><form method="post" action="options.php">';
 		settings_fields( 'plume_newsletter' );
 		do_settings_sections( 'plume_newsletter' );

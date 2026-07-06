@@ -1,5 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) && PHP_SAPI !== 'cli' ) { exit; }
+defined( 'ABSPATH' ) || exit;
 
 class Plume_Form {
 
@@ -19,11 +19,10 @@ class Plume_Form {
 			(array) $args
 		);
 
-		$action = esc_url( admin_url( 'admin-post.php' ) );
 		ob_start();
 		?>
-		<form class="plume-signup" method="post" action="<?php echo $action; ?>">
-			<?php echo $args['notice']; // pre-escaped by the caller ?>
+		<form class="plume-signup" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<?php echo $args['notice']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped status HTML built by status_notice() ?>
 			<input type="hidden" name="action" value="plume_subscribe" />
 			<input type="hidden" name="plume_list" value="<?php echo esc_attr( $args['list'] ); ?>" />
 			<input type="hidden" name="plume_ts" value="<?php echo esc_attr( (string) time() ); ?>" />

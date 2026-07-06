@@ -1,8 +1,5 @@
 <?php
-if ( ! defined( 'ABSPATH' ) && ! defined( 'PLUME_NEWSLETTER_TESTING' ) ) {
-	// Allow load under PHPUnit (no ABSPATH) but block direct web access in WP.
-	if ( PHP_SAPI !== 'cli' ) { exit; }
-}
+defined( 'ABSPATH' ) || exit;
 
 /**
  * The only Plume-facing code. Calls the public double-opt-in subscribe
@@ -21,7 +18,12 @@ class Plume_Client {
 			array(
 				'timeout' => 10,
 				'headers' => array( 'Content-Type' => 'application/json' ),
-				'body'    => wp_json_encode( array( 'email' => $email, 'name' => $name ) ),
+				'body'    => wp_json_encode(
+					array(
+						'email' => $email,
+						'name'  => $name,
+					)
+				),
 			)
 		);
 

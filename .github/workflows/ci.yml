@@ -9,3 +9,4 @@ jobs:
         with: { php-version: '7.4' }
       - run: composer install --no-interaction --prefer-dist
       - run: composer test
+      - run: composer lint
