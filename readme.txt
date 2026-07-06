@@ -4,7 +4,7 @@ Tags: newsletter, signup form, email, subscribe, plume
 Requires at least: 5.8
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ Yes. Exclude the page holding the form from full-page caching. The form carries 
 The email address and optional name a visitor submits are sent to the Plume instance you configure. The plugin stores nothing locally beyond the base URL and list ID settings.
 
 == Changelog ==
+
+= 0.1.2 =
+* Added a translation template (languages/plume-newsletter.pot). No functional changes.
 
 = 0.1.1 =
 * Code-quality pass: WordPress Coding Standards compliance (Plugin Check clean), no functional changes.

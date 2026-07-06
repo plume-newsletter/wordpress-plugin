@@ -3,7 +3,7 @@
  * Plugin Name:       Plume Newsletter
  * Plugin URI:        https://plumenewsletter.com/docs/wordpress/
  * Description:       Add a signup form to your WordPress site that enrolls subscribers into a Plume list via double opt-in.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Plume
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PLUME_NEWSLETTER_VERSION', '0.1.1' );
+define( 'PLUME_NEWSLETTER_VERSION', '0.1.2' );
 define( 'PLUME_NEWSLETTER_FILE', __FILE__ );
 define( 'PLUME_NEWSLETTER_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PLUME_NEWSLETTER_URL', plugin_dir_url( __FILE__ ) );
