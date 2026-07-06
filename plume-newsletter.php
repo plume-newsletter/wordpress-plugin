@@ -30,6 +30,17 @@ add_shortcode( 'plume_signup', array( 'Plume_Form', 'shortcode' ) );
 add_action( 'admin_post_plume_subscribe', array( 'Plume_Handler', 'handle' ) );
 add_action( 'admin_post_nopriv_plume_subscribe', array( 'Plume_Handler', 'handle' ) );
 
-// Includes are wired in later tasks:
-//   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-settings.php'; (Task 5)
-//   require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-widget.php';   (Task 5)
+require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-settings.php';
+
+add_action( 'admin_init', array( 'Plume_Settings', 'register' ) );
+add_action( 'admin_menu', array( 'Plume_Settings', 'menu' ) );
+
+add_action( 'widgets_init', function () {
+	require_once PLUME_NEWSLETTER_DIR . 'includes/class-plume-widget.php';
+	register_widget( 'Plume_Widget' );
+} );
+
+add_action( 'wp_enqueue_scripts', function () {
+	wp_enqueue_style( 'plume-newsletter', PLUME_NEWSLETTER_URL . 'assets/plume.css', array(), PLUME_NEWSLETTER_VERSION );
+	wp_enqueue_script( 'plume-newsletter', PLUME_NEWSLETTER_URL . 'assets/plume.js', array(), PLUME_NEWSLETTER_VERSION, true );
+} );
