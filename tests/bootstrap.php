@@ -71,6 +71,12 @@ if ( ! function_exists( 'esc_attr__' ) ) { function esc_attr__( $t, $d = null ) 
 if ( ! function_exists( 'get_option' ) ) {
 	function get_option( $k, $default = false ) { return isset( $GLOBALS['__plume_options'][ $k ] ) ? $GLOBALS['__plume_options'][ $k ] : $default; }
 }
+if ( ! function_exists( 'wp_verify_nonce' ) ) {
+	function wp_verify_nonce( $nonce, $action = -1 ) { return ( $nonce === 'nonce-' . $action ) ? 1 : false; }
+}
+if ( ! function_exists( 'wp_unslash' ) ) { function wp_unslash( $v ) { return $v; } }
+if ( ! function_exists( 'sanitize_email' ) ) { function sanitize_email( $e ) { return is_email( $e ) ? $e : ''; } }
 
 require_once __DIR__ . '/../includes/class-plume-client.php';
 require_once __DIR__ . '/../includes/class-plume-form.php';
+require_once __DIR__ . '/../includes/class-plume-handler.php';
